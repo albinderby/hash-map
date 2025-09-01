@@ -29,6 +29,13 @@ class HASHMAP {
 
     }
 
+    get(key) {
+        const hash = this.#hash(key);
+        if(!this.bucket[hash])return null;
+        const result = this.bucket[hash].find(key);
+        return result ? result.data.value : null;
+    }
+
     #hash(key) {
         let hashCode = 0;
         const primeNumber = 31;
