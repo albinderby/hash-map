@@ -1,4 +1,4 @@
-import { LINKED_LIST } from "./linked_list";
+import { LINKED_LIST } from "./linked_list.js";
 
 class HASHMAP {
     loadFactor;
@@ -61,25 +61,43 @@ class HASHMAP {
         this.filledBuckets = 0;
         this.bucket = new Array(this.capcacity);
         this.length = 0;
-    }   
-    keys(){
-        const array=[];
-       for (const element of this.bucket){
-            let pointer=element.getHead();
-            while(pointer){
-                array.push(pointer.data.key);
-                pointer=pointer.next;
+    }
+    keys() {
+        const array = [];
+        for (const element of this.bucket) {
+            if (element) {
+                let pointer = element.getHead();
+                while (pointer) {
+                    array.push(pointer.data.key);
+                    pointer = pointer.next;
+                }
             }
         }
         return array;
     }
-    values(){
-         const array=[];
-       for (const element of this.bucket){
-            let pointer=element.getHead();
-            while(pointer){
-                array.push(pointer.data.value);
-                pointer=pointer.next;
+    values() {
+        const array = [];
+        for (const element of this.bucket) {
+            if (element) {
+                let pointer = element.getHead();
+                while (pointer) {
+                    array.push(pointer.data.value);
+                    pointer = pointer.next;
+                }
+            }
+        }
+        return array;
+    }
+    entries() {
+        const array = [];
+        for (const element of this.bucket) {
+            if (element) {
+                let pointer = element.getHead();
+                while (pointer) {
+                    const pair = [pointer.data.key, pointer.data.value];
+                    array.push(pair);
+                    pointer = pointer.next;
+                }
             }
         }
         return array;
@@ -118,3 +136,11 @@ class HASHMAP {
 }
 
 
+const map = new HASHMAP();
+map.set("name", "albin");
+
+console.log(map.entries());
+console.log(map.values());
+console.log(map.keys());
+console.log(map.has("name"));
+console.log(map.getLength());
