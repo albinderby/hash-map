@@ -76,7 +76,18 @@ export class LINKED_LIST {
         }
         return null;
     }
-
+     findIndex(key){
+           let pointer = this.head;
+           let index=0;
+        while (pointer) {
+            if (pointer.data.key === key) {
+                return index;
+            }   
+            index++;
+            pointer = pointer.next
+        }
+        return null;
+     }
     toString() {
         let string = "";
         let pointer = this.head;
